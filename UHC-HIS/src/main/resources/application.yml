@@ -1,0 +1,47 @@
+admin:
+  email:
+    address: admin@gmail.com
+  first:
+    name: Administrator
+  last:
+    name: Admin
+  password: admin
+---
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type: TRACE
+---
+max:
+  card:
+    display:
+      'on':
+        pagination:
+          tray: 2
+  result:
+    per:
+      page: 2
+---
+spring:
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:3307/ntaj_jdbc
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+---
+server:
+  port: 9094
+  servlet:
+    context-path: /UHC-HIS    
