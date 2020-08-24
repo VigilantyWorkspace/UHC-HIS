@@ -29,7 +29,7 @@ public interface UserRepository extends JpaRepository<User, Serializable> {
     @Transactional
 	@Modifying
 	@Query(value="UPDATE User set DELETE_STATUS='null' where USER_ID=?",nativeQuery=true)
-	public Long  updateStatus(Long USER_ID);
+	public int  updateStatus(Long USER_ID);
 
 //    List<User> findByLastNameIgnoreCaseContaining(String lastName);
 //

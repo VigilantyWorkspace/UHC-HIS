@@ -69,27 +69,38 @@
 			</div>
 
 			<div class="card-body">
-				<form:form class="login100-form validate-form" action="read" method="POST" modelAttribute="unLockBind">
+				<form:form class="login100-form validate-form" action="unlockUserAcc" method="POST" modelAttribute="unLockBind">
 					
 		
-					<span class="login100-form-title p-b-34 p-t-27">
-						UNLOCK LOGO
-					</span>
+					
 					<h3 style="color: red;"> ${errorMsg}</h3>
-		          <div >
+					<div class="col-4">
+						<label for="email">Email-id</label>
+					</div>
+					<div >
 						<form:input  type="text" path="email"  value="${mail}" readonly="true"/>
 					</div>
-					
-					 <div class="wrap-input100 " data-validate = "Enter password">
+
+					<div class="col-4">
+						<label for="tempPwd">OTP RECIEVED</label>
+					</div>
+					<div class="wrap-input100 " data-validate = "Enter password">
 						<form:input class="input100" type="text" path="tempPwd" value="${otp}"/>
 						 <span class="focus-input100" data-placeholder="&#xf191;"></span> 
 					</div>
-		            
+
+
+					<div class="col-4">
+						<label for="newPwd">Enter New Password</label>
+					</div>
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<form:input class="input100" type="password" path="newPwd" placeholder="Password"/>
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
-					
+
+					<div class="col-4">
+						<label for="confirmPwd">Confirm Password</label>
+					</div>
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<form:input class="input100" type="password" path="confirmPwd" placeholder="ConfirmPassword"/>
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
@@ -97,7 +108,7 @@
 		
 		
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="return validatesPwd()">
+						<button class="btn btn-primary" onclick="return validatesPwd()">
 							UNLOCK
 						</button>
 					</div>

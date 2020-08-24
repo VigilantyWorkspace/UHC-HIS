@@ -62,9 +62,9 @@ public class ViewUsersController {
   }
   
   @GetMapping("/active")
-	public String editStatusForActive(@RequestParam("cid") Long conId,Model model) {
+	public String editStatusForActive(@RequestParam("user_id") Long user_id,Model model) {
 		
-	  Long updateStatusCode = userService.updateStatusCode(conId);
+	  int updateStatusCode = userService.updateStatusCode(user_id);
 		if(updateStatusCode <= 0) {
 			System.out.println(updateStatusCode);
 			return "redirect:/account/all";

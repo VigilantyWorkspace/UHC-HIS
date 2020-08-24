@@ -137,8 +137,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Long updateStatusCode(Long id) {
-		Long updateStatus = userRepo.updateStatus(id);
-		return updateStatus;
+	public int updateStatusCode(Long id) {
+		
+		return this.userRepo.updateStatus(id);
+		
 	}
 }

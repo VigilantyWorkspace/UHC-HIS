@@ -21,5 +21,5 @@ public interface UserService {
 	
 	Boolean updateAccountData(UserDTO userDTO);
 	
-	Long updateStatusCode(Long conId);
+	int updateStatusCode(Long conId);
 }
