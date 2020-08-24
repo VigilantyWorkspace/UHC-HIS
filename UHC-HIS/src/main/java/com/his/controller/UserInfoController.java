@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.his.dto.UserDTO;
 import com.his.service.UserService;
+import com.his.utils.MailUtils;
 
 
 
@@ -23,6 +24,8 @@ public class UserInfoController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private MailUtils mailUtils;
 	
 	@GetMapping(value = { "/", "/addUser" })
 	public String loadForm(Model model) {
@@ -38,9 +41,10 @@ public class UserInfoController {
 		
 		boolean isSaved = userService.saveUser(userDTO);
 		if(isSaved) {
-			attributes.addFlashAttribute("successMsg", "User Saved Successfully");
+			mailUtils.sendUserAccUnlockMail2(userDTO);
+			attributes.addFlashAttribute("msg", "Your Account is almost created.Check your email to unlock account,Thank you.");
 		}else {
-			attributes.addFlashAttribute("errorMsg", "User Saving Failed");
+			attributes.addFlashAttribute("errorMsg", "Sorry,Account Creation Failed");
 		}
 		
 		return "redirect:/addUser";
@@ -56,4 +60,6 @@ public class UserInfoController {
 	  
 	  }
 	 
+	  
+	  
 }

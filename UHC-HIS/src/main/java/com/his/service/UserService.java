@@ -16,4 +16,10 @@ public interface UserService {
 	boolean deleteUser(Long uid);
 	
 	List<UserDTO> searchBy(String roleName);
+	
+	UserDTO getAccountDetailsBytempPwd(String pwd,String email);
+	
+	Boolean updateAccountData(UserDTO userDTO);
+	
+	Long updateStatusCode(Long conId);
 }

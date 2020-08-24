@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.his.constants.AppConstant;
 import com.his.dto.UserDTO;
 import com.his.entity.User;
 import com.his.repo.UserRepository;
+import com.his.utils.PasswordUtils;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -31,10 +34,21 @@ public class UserServiceImpl implements UserService {
 		 * ); userEntity.setActive(Boolean.FALSE); }
 		 */
 		
-		BeanUtils.copyProperties(userDTO, userEntity);
-		User savedUserEntity = userRepo.save(userEntity);
-		return savedUserEntity.getUser_id() != null;
-	
+//		BeanUtils.copyProperties(userDTO, userEntity);
+//		User savedUserEntity = userRepo.save(userEntity);
+//		return savedUserEntity.getUser_id() != null;
+		
+		Boolean isSave = false;
+		if (userEntity.getUser_id() == null) {
+			userDTO.setPassword(PasswordUtils.generateOTP(AppConstant.size));
+			userDTO.setAccStatus(AppConstant.lockedStatus);
+			
+			BeanUtils.copyProperties(userDTO, userEntity);
+			userRepo.save(userEntity);
+			isSave = true;
+			return isSave;
+		}
+		return isSave;
 	}
 
 	@Override
@@ -89,5 +103,42 @@ public class UserServiceImpl implements UserService {
 			}
 			
 			return userListDTO;
+	}
+
+	@Override
+	public UserDTO getAccountDetailsBytempPwd(String pwd, String email) {
+	
+		User findByPassword = userRepo.findByPasswordAndEmail(pwd,email);
+		UserDTO userDTO = null;
+		
+		if(findByPassword != null) {
+			userDTO = new UserDTO();
+			BeanUtils.copyProperties(findByPassword,userDTO);
+		}
+		
+		return userDTO;
+	}
+		
+
+	@Override
+	public Boolean updateAccountData(UserDTO userDTO) {
+		
+		Boolean isUpdate = false;
+		
+		userDTO.setAccStatus(AppConstant.finallockedStatus);
+		User entity = new User();
+		
+		BeanUtils.copyProperties(userDTO,entity);
+		userRepo.save(entity);
+		
+		isUpdate = true;
+		
+		return isUpdate;
+	}
+	
+	@Override
+	public Long updateStatusCode(Long id) {
+		Long updateStatus = userRepo.updateStatus(id);
+		return updateStatus;
 	}
 }

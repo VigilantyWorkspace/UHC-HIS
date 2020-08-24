@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "HIS_USER_MASTER")
+@SQLDelete(sql = "UPDATE HIS_USER_MASTER set DELETE_STATUS='ACTIVE' where USER_ID=?"  )
 public class User {
 
     @Id
@@ -53,6 +55,12 @@ public class User {
 
     @Column(name = "isActive")
     private boolean isActive;
+    
+    @Column(name = "ACC_STATUS")
+	private String accStatus;
+    
+    @Column(name = "DELETE_STATUS")
+	private String deleteStatus;
     
     @CreationTimestamp
 	@Temporal(TemporalType.DATE)
