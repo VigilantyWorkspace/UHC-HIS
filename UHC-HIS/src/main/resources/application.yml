@@ -46,17 +46,17 @@ spring:
       username: santanulucky1@gmail.com
       password: 9439344100
   ## Checks un/pwd valid or not?
-		  properties:
-		          mail:
-		              smtp:
-		                    auth: true
-		                    connectiontimeout: 5000
-		                    timeout: 5000
-		                    writetimeout: 5000
-		   
-		## HTTPS required [TLS=Transport Layer Security]
-		                    starttls:
-		                          enable: true
+      properties:
+              mail:
+                  smtp:
+                        auth: true
+                        connectiontimeout: 5000
+                        timeout: 5000
+                        writetimeout: 5000
+   
+## HTTPS required [TLS=Transport Layer Security]
+                        starttls:
+                                  enable: true
 ---
 server:
   port: 9094
