@@ -58,6 +58,6 @@ public class ViewUsersController {
       System.out.println(result);
       model.addAttribute("result",result);
 	  
-	  return "viewUsers";
+	  return "filterResult";
   }
 }

@@ -1,0 +1,17 @@
+Hi  {FNAME}, {LNAME} :
+<br/>
+
+Welcome to  HIS, Your are almost done.Plese use below details to unlock your account.<br/>
+<br/>
+
+Temporary Password : {TEMP-PWD}<br/>
+Your Role : {ROLE}<br>
+<br/>
+
+<a href='http://localhost:9094/finallogin?email={EMAIL}&OTP={TEMP-PWD}'>
+Click Here To Unlock Your Account</a> <br/>
+<br/>
+
+Thanks & Regards,<br/>
+HIS Team.<br/>
+<h4>UHC-HIS</h4>

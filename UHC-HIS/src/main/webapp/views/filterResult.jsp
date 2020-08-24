@@ -61,16 +61,50 @@
 			</ul>
 		</div>
 	</nav>
-
+<section>
+    <div class="container">
+        <div class="row justify-content-md-center">
+        <form:form action="searchSubmit" method="POST" modelAttribute="user">
+            
+                <h4 class="text-center">Filter By</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Select Search By</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="btn btn-outline-primary my-2 my-sm-0" href="viewUsers">VIEW ALL USERS</a>
+                            </td>
+                            <td>
+                                <select id="criteriaId" name="roleName" class="form-control">
+                                    <option value="ADMIN">ADMIN</option>
+                                    <option value="CASE_WORKER">CASE-WORKER</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-primary my-2 my-sm-0" name="searchButton"
+                                       value="Search Now!"
+                                       type="submit">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+           </form:form>
+        </div>
+    </div>
+</section>
+<%-- <c:if test="${not empty result}"> --%>
+  <section>
 	<div class="container" style="background-color: rgba(205, 220, 57, 0.1);">
 		<div class="card">
 			<div class="card-header bg-primary text-white text-center">
 				<H3>All Account Details</H3>
 			</div>
 			<div class="card-body">
-			<a class="btn btn-outline-primary my-2 my-sm-0" href="filterResult">Filter User By Role</a>
 		<c:choose>
-			<c:when test="${!empty userDetailsList }">
+			<c:when test="${!empty result }">
 			<table  class="table table-bordered table-hover display" id="contact_table" style="width:100%">
 				<tr class="bg-success text-white">
 					<th>Sl.No.</th>
@@ -83,7 +117,7 @@
                      <th colspan="2">Action</th>
 					 
 				</tr>
-				<c:forEach items="${userDetailsList}" var="userDetailsList" varStatus="index">
+				<c:forEach items="${result}" var="userDetailsList" varStatus="index">
 					<tr>
 						<td>${index.count}</td>
 						<td>${userDetailsList.createdDate}</td>
@@ -123,6 +157,7 @@
 			
 		</div> <!-- card end -->	
 	</div><!-- container end -->
-	
+	</section>
+	<%-- </c:if> --%>
 </body>
 </html>
