@@ -62,7 +62,7 @@ public class MailUtils {
 	private String getUnlockAccUserBody(UserDTO userDTO) throws IOException {
 		StringBuffer sb = new StringBuffer();
 		//file reader read data char by char
-		FileReader fr = new FileReader("unlock-acc-mail-content.txt");
+		FileReader fr = new FileReader("UNLOCK-ACC-MAIL-CONTENT.txt");
 		//Buffer reader read data line by line
 		BufferedReader br = new BufferedReader(fr);
 		String readLine = br.readLine();
