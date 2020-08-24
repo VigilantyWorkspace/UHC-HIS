@@ -30,8 +30,8 @@ public class UnLockController {
 
 	};
 
-	@PostMapping("/read")
-	public String readForm(@ModelAttribute("confirmPwd") UnlockDTO unlockDTO, Model model) {
+	@PostMapping("/unlockUserAcc")
+	public String unlockUserAcc(@ModelAttribute("confirmPwd") UnlockDTO unlockDTO, Model model) {
 		UnlockDTO unlockbind = new UnlockDTO();
 		model.addAttribute("unLockBind", unlockbind);
 		try {
@@ -45,7 +45,7 @@ public class UnLockController {
 
 				Boolean updateFormData = userService.updateAccountData(accountDetailsBytempPwd);
 				if (updateFormData != null) {
-					return "confirm";
+					return "confirmation";
 				}
 
 			}

@@ -24,11 +24,15 @@
 				return confirm("Are you sure ,U want to Change?");
 			}
 
-		$(document).ready(function() {
+		function confirmActive() {
+			return confirm("Are you sure, U want to Active?");
+		}
+
+		/* $(document).ready(function() {
 		    $('#contact_table').DataTable( {
 		        "pagingType": "full_numbers"
 		    } );
-		} );
+		} ); */
 	</script>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -96,7 +100,7 @@
 						<td>
 							<a class="btn btn-warning" href="editUser?user_id=${userDetailsList.user_id}">EDIT</a>
 						|
-							<c:choose>
+							<%-- <c:choose>
                                	<c:when test="${'TRUE' eq userDetailsList.isActive() }">
 									<a class="btn btn-warning"  href="deleteUser?user_id=${userDetailsList.user_id}" onclick="return confirmSoftDelete()">
 										<b class="text-success">ACTIVE</b>
@@ -104,11 +108,23 @@
 								</c:when>
 							
 								<c:when test="${'FALSE' eq userDetailsList.isActive() }">
-									<a class="btn btn-warning" href="deleteUser?user_id=${userDetailsList.user_id}" onclick="return confirmSoftDelete()">
+									<a class="btn btn-warning" href="deleteUser?user_id=${userDetailsList.user_id}" onclick="return confirmActive()">
 										<b class="text-danger">DE-ACTIVATED</b>
 									</a>
 								</c:when>
-                            </c:choose>
+                            </c:choose> --%>
+                            <c:choose>
+								<c:when test="${obj.deleteStatus eq 'null'}">
+		
+									<button class="btn btn-danger"><a href="delete?cid=${obj.regId}"
+										onClick="return confirmDelete()">DElETE</a></button>
+								</c:when>
+								<c:otherwise>
+									<button class="btn btn-light"><a href="active?cid=${obj.regId}" onClick="return confirmActive()">ACTIVATE</a></button>
+									
+									
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 				</c:forEach>

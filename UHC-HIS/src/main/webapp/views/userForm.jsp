@@ -93,6 +93,7 @@
 						<div class="col-4">
 							<form:radiobutton path="gender" value="male"/>Male
 							<form:radiobutton path="gender" value="female"/>Fe-Male
+							<form:radiobutton path="gender" value="others"/>Others
 						</div>
 						<div class="col-4">
 							<!-- Error Message -->
@@ -132,6 +133,7 @@
 
 						<div class="col-4">
 							<form:select path="roleName">
+								<form:option value="">Select Role</form:option>
 								<form:option value="ADMIN">ADMIN</form:option>
 								<form:option value="CASE-WORKER">CASE-WORKER</form:option>
 							</form:select>
@@ -154,7 +156,17 @@
 			<!-- end of body -->
 			<!-- Message-->
 			<div>
-				<font color='green'>${successMsg}</font>
+				
+				<c:if test="${!empty msg}">
+				<div class="card-footer bg-info text-white text-center p-1">
+					<h3><font color='green'>${msg}</font></h3>
+					<h3>
+						<a
+							href="send?url=https://accounts.google.com/AccountChooser/signinchooser?flowName=GlifWebSignIn&flowEntry=AccountChooser/">click
+							here to Check your Mail...</a>
+					</h3>
+				</div>
+			</c:if>
 			</div>
 			<div>
 				<font color='red'>${errorMsg}</font>
