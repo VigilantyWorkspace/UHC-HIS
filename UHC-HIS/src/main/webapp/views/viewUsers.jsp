@@ -62,7 +62,7 @@
 								</c:when>
                             </c:choose> --%>
                             <c:choose>
-								<c:when test="${userDetailsList.deleteStatus eq 'N'}">
+								<c:when test="${userDetailsList.deleteStatus eq 'Y'}">
 		
 									<button class="btn btn-warning"><a href="deleteUser?user_id=${userDetailsList.user_id}"
 										onClick="return confirmDelete()">DELETE</a></button>

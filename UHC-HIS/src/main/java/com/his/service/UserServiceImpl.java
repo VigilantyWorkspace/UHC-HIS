@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 		if (userEntity.getUser_id() == null) {
 			userDTO.setPassword(PasswordUtils.generateOTP(AppConstant.size));
 			userDTO.setAccStatus(AppConstant.lockedStatus);
-			userDTO.setDeleteStatus("N");
+			userDTO.setDeleteStatus("Y");
 			BeanUtils.copyProperties(userDTO, userEntity);
 			userRepo.save(userEntity);
 			isSave = true;

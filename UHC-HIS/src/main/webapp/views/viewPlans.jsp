@@ -56,10 +56,10 @@
 								</c:when>
                             </c:choose> --%>
                             <c:choose>
-								<c:when test="${planDetailsList.deleteStatus eq 'N'}">
+								<c:when test="${planDetailsList.deleteStatus eq 'Y'}">
 		
-									<button class="btn btn-danger"><a href="deletePlan?plan_id=${planDetailsList.plan_id}"
-										onClick="return confirmDelete()">DElETE</a></button>
+									<button class="btn btn-warning"><a href="deletePlan?plan_id=${planDetailsList.plan_id}"
+										onClick="return confirmDelete()">DELETE</a></button>
 								</c:when>
 								<c:otherwise>
 									<button class="btn btn-light"><a href="activePlan?plan_id=${planDetailsList.plan_id}" onClick="return confirmActive()">ACTIVATE</a></button>
