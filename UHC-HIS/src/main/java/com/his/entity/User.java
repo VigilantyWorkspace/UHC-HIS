@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "HIS_USER_MASTER")
-@SQLDelete(sql = "UPDATE HIS_USER_MASTER set DELETE_STATUS='N' where USER_ID=?"  )
+@SQLDelete(sql = "UPDATE HIS_USER_MASTER set DELETE_STATUS='Y' where USER_ID=?"  )
 public class User {
 
     @Id
