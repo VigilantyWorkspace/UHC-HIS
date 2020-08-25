@@ -21,7 +21,7 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public boolean savePlan(PlanDTO planDTO) {
 		PlanEntity planEntity = new PlanEntity();
-
+		planDTO.setDeleteStatus("N");
 		BeanUtils.copyProperties(planDTO, planEntity);
 		PlanEntity savedPlanEntity = planRepo.save(planEntity);
 		return savedPlanEntity.getPlan_id() != null;

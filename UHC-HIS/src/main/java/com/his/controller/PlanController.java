@@ -1,11 +1,16 @@
 package com.his.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +33,13 @@ public class PlanController {
 		model.addAttribute("plan", planDTO);
 		return "planForm";
 	}//end of method
+	
+	@InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd"); //yyyy-MM-dd'T'HH:mm:ssZ example
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
 	
 	@PostMapping(value = "/storePlan")
 	public String handleSubmitBtn(@ModelAttribute("plan")PlanDTO planDTO, RedirectAttributes attributes) {
@@ -57,11 +69,11 @@ public class PlanController {
 		PlanDTO planDTO = planService.getPlanById(plan_id);
 		model.addAttribute("plan", planDTO);
 		
-		return "redirect:/addPlan";
+		return "planForm";
 	}//end of method
 	
 	@RequestMapping("/deletePlan")
-	public String deletePlan(@RequestParam("plan_Id") Integer plan_id) {
+	public String deletePlan(@RequestParam("plan_id") Integer plan_id) {
 		
 		boolean deletestatus = planService.deletePlan(plan_id);
 		if(deletestatus) {
