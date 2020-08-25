@@ -114,14 +114,13 @@
 								</c:when>
                             </c:choose> --%>
                             <c:choose>
-								<c:when test="${obj.deleteStatus eq 'null'}">
+								<c:when test="${userDetailsList.deleteStatus eq 'null'}">
 		
 									<button class="btn btn-danger"><a href="deleteUser?user_id=${userDetailsList.user_id}"
 										onClick="return confirmDelete()">DElETE</a></button>
 								</c:when>
 								<c:otherwise>
 									<button class="btn btn-light"><a href="active?user_id=${userDetailsList.user_id}" onClick="return confirmActive()">ACTIVATE</a></button>
-									
 									
 								</c:otherwise>
 							</c:choose>

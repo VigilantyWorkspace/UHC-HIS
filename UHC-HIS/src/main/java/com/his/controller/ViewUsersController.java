@@ -67,11 +67,11 @@ public class ViewUsersController {
 	  int updateStatusCode = userService.updateStatusCode(user_id);
 		if(updateStatusCode <= 0) {
 			System.out.println(updateStatusCode);
-			return "redirect:/account/all";
+			return "redirect:/viewUsers";
 		}
 		else {
 			System.out.println(updateStatusCode);
-			return "redirect:/account/all";
+			return "redirect:/viewUsers";
 		}
 		
 		
