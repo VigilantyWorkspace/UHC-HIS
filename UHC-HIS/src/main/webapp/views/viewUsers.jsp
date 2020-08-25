@@ -1,6 +1,6 @@
 <%@include file="pageHeader.jsp"%>
 <script>
-		function confirmSoftDelete(){
+		function confirmDelete(){
 				return confirm("Are you sure ,U want to Change?");
 			}
 
@@ -62,7 +62,7 @@
 								</c:when>
                             </c:choose> --%>
                             <c:choose>
-								<c:when test="${userDetailsList.deleteStatus eq 'Y'}">
+								<c:when test="${userDetailsList.deleteStatus eq 'N'}">
 		
 									<button class="btn btn-warning"><a href="deleteUser?user_id=${userDetailsList.user_id}"
 										onClick="return confirmDelete()">DELETE</a></button>
