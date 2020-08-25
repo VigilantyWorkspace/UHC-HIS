@@ -74,36 +74,30 @@
 	<div class="container" style="background-color: rgba(205, 220, 57, 0.1);">
 		<div class="card">
 			<div class="card-header bg-primary text-white text-center">
-				<H3>All Account Details</H3>
+				<H3>All Plan Details</H3>
 			</div>
 			<div class="card-body">
-			<a class="btn btn-outline-primary my-2 my-sm-0" href="filterResult">Filter User By Role</a>
+			
 		<c:choose>
-			<c:when test="${!empty userDetailsList }">
+			<c:when test="${!empty planDetailsList }">
 			<table  class="table table-bordered table-hover display" id="contact_table" style="width:100%">
 				<tr class="bg-success text-white">
 					<th>Sl.No.</th>
-					<th>Joining Date</th>
-                     <th>First Name</th>
-                     <th>Last Name</th>
-                     <th>Contact No.</th>
-                     <th>Email-Id</th>
-                     <th>Role</th>
+					<th>Plan Name</th>
+                     <th>Start Date</th>
+                     <th>End Date</th>
                      <th colspan="2">Action</th>
 					 
 				</tr>
-				<c:forEach items="${userDetailsList}" var="userDetailsList" varStatus="index">
+				<c:forEach items="${planDetailsList}" var="planDetailsList" varStatus="index">
 					<tr>
 						<td>${index.count}</td>
-						<td>${userDetailsList.createdDate}</td>
-						<td>${userDetailsList.firstName}</td>
-						<td>${userDetailsList.lastName}</td>
-						<td>${userDetailsList.contact_no}</td>
-						<td>${userDetailsList.email}</td>
-						<td>${userDetailsList.roleName}</td>
+						<td>${planDetailsList.planName}</td>
+						<td>${planDetailsList.plan_start_date}</td>
+						<td>${planDetailsList.plan_end_date}</td>
 						
 						<td>
-							<a class="btn btn-warning" href="editUser?user_id=${userDetailsList.user_id}">EDIT</a>
+							<a class="btn btn-warning" href="editPlan?plan_id=${planDetailsList.plan_id}">EDIT</a>
 						|
 							<%-- <c:choose>
                                	<c:when test="${'TRUE' eq userDetailsList.isActive() }">
@@ -119,13 +113,13 @@
 								</c:when>
                             </c:choose> --%>
                             <c:choose>
-								<c:when test="${userDetailsList.deleteStatus eq 'N'}">
+								<c:when test="${planDetailsList.deleteStatus eq 'N'}">
 		
-									<button class="btn btn-danger"><a href="deleteUser?user_id=${userDetailsList.user_id}"
+									<button class="btn btn-danger"><a href="deletePlan?plan_id=${planDetailsList.plan_id}"
 										onClick="return confirmDelete()">DElETE</a></button>
 								</c:when>
 								<c:otherwise>
-									<button class="btn btn-light"><a href="activeUser?user_id=${userDetailsList.user_id}" onClick="return confirmActive()">ACTIVATE</a></button>
+									<button class="btn btn-light"><a href="activePlan?plan_id=${planDetailsList.plan_id}" onClick="return confirmActive()">ACTIVATE</a></button>
 									
 								</c:otherwise>
 							</c:choose>

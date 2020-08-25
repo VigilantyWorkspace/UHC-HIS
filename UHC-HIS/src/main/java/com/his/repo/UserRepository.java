@@ -28,7 +28,7 @@ public interface UserRepository extends JpaRepository<User, Serializable> {
     
     @Transactional
 	@Modifying
-	@Query(value="UPDATE HIS_USER_MASTER set DELETE_STATUS='null' where USER_ID=?",nativeQuery=true)
+	@Query(value="UPDATE HIS_USER_MASTER set DELETE_STATUS='N' where USER_ID=?",nativeQuery=true)
 	public int  updateStatus(Long USER_ID);
 
 //    List<User> findByLastNameIgnoreCaseContaining(String lastName);

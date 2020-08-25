@@ -61,7 +61,7 @@ public class ViewUsersController {
 	  return "filterResult";
   }
   
-  @GetMapping("/active")
+  @GetMapping("/activeUser")
 	public String editStatusForActive(@RequestParam("user_id") Long user_id,Model model) {
 		
 	  int updateStatusCode = userService.updateStatusCode(user_id);
