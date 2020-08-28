@@ -6,18 +6,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.his.dto.PlanDTO;
+import com.his.entity.PlanEntity;
 import com.his.service.PlanService;
 
 @Controller
@@ -59,7 +62,8 @@ public class PlanController {
 		List<PlanDTO> planListDTO =planService.getAllPLans();
 		model.addAttribute("planDetailsList",planListDTO);
 		
-		return "viewPlans";
+		 return findPlanPaginated(1, model);
+		//return "viewPlans";
 		
 	}//end of method
 	
@@ -96,6 +100,20 @@ public class PlanController {
 			return "redirect:/viewPlans";
 		}
 		
+	}//end of method
+	
+	@GetMapping("/planpage/{pageNo}")
+	public String findPlanPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+	    int pageSize = 4;
+
+	    Page < PlanEntity > page = planService.findPaginated(pageNo, pageSize);
+	    List<PlanEntity> planList = page.getContent();
+
+	    model.addAttribute("currentPage", pageNo);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    model.addAttribute("totalItems", page.getTotalElements());
+	    //model.addAttribute("planList", planList);
+	    return "viewPlans";
 	}//end of method
 	
 }//end of Controller

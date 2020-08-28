@@ -3,14 +3,18 @@ package com.his.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.his.dto.UserDTO;
+import com.his.entity.PlanEntity;
+import com.his.entity.User;
 import com.his.service.UserService;
 import com.his.utils.MailUtils;
 
@@ -56,10 +60,23 @@ public class UserInfoController {
 		  List<UserDTO> userListDTO =userService.getAllUsers();
 		  model.addAttribute("userDetailsList",userListDTO);
 		  
-		  return "viewUsers";
+		  return findUserPaginated(1, model);
+		  //return "viewUsers";
 	  
 	  }
 	 
-	  
+	  @GetMapping("/page/{pageNo}")
+		public String findUserPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+		    int pageSize = 4;
+
+		    Page<User> page = userService.findPaginated(pageNo, pageSize);
+		    List<User> userList = page.getContent();
+
+		    model.addAttribute("currentPage", pageNo);
+		    model.addAttribute("totalPages", page.getTotalPages());
+		    model.addAttribute("totalItems", page.getTotalElements());
+		    //model.addAttribute("userList", userList);
+		    return "viewUsers";
+		}//end of method
 	  
 }
